@@ -1,0 +1,29 @@
+# Cloud Workload Forecasting Challenge
+
+This project implements a near-term aggregate demand forecasting pipeline for the Azure Public Dataset V2 VM trace.
+
+## Project Structure
+- `src/main.py`: Core implementation for target generation, feature engineering, and ML forecasting.
+- `reports/final_report.md`: Detailed analysis, methodology, and operational recommendations.
+- `tests/`: Pipeline validation suite.
+- `predictions.csv`: Final forecasted values for the 2-hour holdout period.
+- `requirements.txt`: Project dependencies.
+
+## Installation
+Install the required dependencies using pip:
+```bash
+pip install -r requirements.txt
+```
+
+## How to Run
+To generate the targets, training set, and final predictions, run the main script:
+```bash
+python src/main.py
+```
+
+## Methodology Summary
+- **Targets:** `active_vm_count` and `aggregate_cpu_utilization`.
+- **Features:** Autoregressive lags (t-1, t-2, t-3) and a 3-period rolling mean.
+- **Model:** RandomForestRegressor trained on the first 110 observations.
+- **Validation:** Strictly temporal split with a 24-observation holdout horizon.
+- **Baseline:** Persistence forecast (t+1 = t).

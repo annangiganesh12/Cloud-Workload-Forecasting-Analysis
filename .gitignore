@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+data-v1/
+targets.csv
+training_set.csv
+test_dummy_cpu.csv
+tests/test_results.txt
+.pytest_cache/
